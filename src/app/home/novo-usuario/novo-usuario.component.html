@@ -1,0 +1,42 @@
+<h4 class="text-center">Registre-se e mostre seu pet ao Mundo</h4>
+
+<form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
+  <div class="form-group">
+    <input placeholder="E-mail" class="form-control" formControlName="email">
+  </div>
+  <app-mensagem
+  *ngIf="novoUsuarioForm.get('email')?.errors?.['required'] &&
+  novoUsuarioForm.get('email')?.touched"
+  mensagem="E-mail obrigatório"
+  >
+  </app-mensagem>
+  <app-mensagem
+  *ngIf="novoUsuarioForm.get('email')?.errors?.['email'] &&
+  novoUsuarioForm.get('email')?.touched"
+  mensagem="E-mail no formato incorreto"
+  >
+  </app-mensagem>
+  <div class="form-group">
+    <input placeholder="Nome Completo" class="form-control" formControlName="fullName"/>
+  </div>
+  <app-mensagem
+  *ngIf="novoUsuarioForm.get('fullName')?.errors &&
+  novoUsuarioForm.get('fullName')?.touched"
+  mensagem="Nome inválido"
+  >
+  </app-mensagem>
+  <div class="form-group">
+    <input placeholder="Usuário" class="form-control" formControlName="userName"/>
+  </div>
+  <app-mensagem
+  *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']"
+  mensagem="Nome já existente"
+  >
+  </app-mensagem>
+  <div class="form-group">
+    <input placeholder="Senha" class="form-control" formControlName="password"/>
+  </div>
+
+  <button class="btn btn-primary btn-block">Cadastro</button>
+</form>
+<p>Já possui cadstro? <a [routerLink]="['']">Faça Login!</a></p>
